@@ -20,33 +20,33 @@ test_list_operations.py for concrete examples of the expected function behavior.
 
 def head(input_list):
     """Return the first element of the input list."""
-    pass
+    return input_list[0]
 
 def tail(input_list):
     """Return all elements of the input list except the first."""
-    pass
+    return input_list[1:]
 
 def last(input_list):
     """Return the last element of the input list."""
-    pass
+    return input_list[-1]
 
 def init(input_list):
     """Return all elements of the input list except the last."""
-    pass
+    return input_list[:-2]
 
 def first_three(input_list):
     """Return the first three elements of the input list."""
-    pass
+    return input_list[0,3]
 
 def last_five(input_list):
     """Return the last five elements of the input list."""
-    pass
+    return input_list[-5:]
 
 def middle(input_list):
     """Return all elements of the input list except the first two and the last
     two.
     """
-    pass
+    return input_list[3,(len(input_list-2))]
 
 def inner_four(input_list):
     """Return the third, fourth, fifth, and sixth elements of the input list."""
