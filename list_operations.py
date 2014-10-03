@@ -112,22 +112,23 @@ the test_list_operations.py file for concrete examples of expected behavior.
 def custom_len(input_list):
     """custom_len(input_list) imitates len(input_list)"""
     i = 0
+    x = 0
     for i in input_list:
-        i = i + 1
-    return i
+        x = x + 1
+    return x
 
 # For the next four functions, get clever using slice operations described in the first half
 def custom_append(input_list, value):
     """custom_append(input_list, value) imitates input_list.append(value)"""
     x = custom_len(input_list)
-    input_list[x] = [value]
+    input_list[x:-1] = [value]
     return input_list
     
 
 def custom_extend(input_list, values):
     """custom_extend(input_list, values) imitates input_list.extend(values)"""
     x = custom_len(input_list)
-    input_list[x:] = [values]
+    input_list[x:-1] = [values]
     return input_list
 
 def custom_insert(input_list, index, value):
@@ -145,7 +146,7 @@ def custom_remove(input_list, value):
             del input_list[i]
             break
         else:
-            i = i + 1
+            continue
 
 def custom_pop(input_list):
     """custom_pop(input_list) imitates input_list.pop()"""
@@ -156,12 +157,12 @@ def custom_pop(input_list):
 
 def custom_index(input_list, value):
     """custom_index(input_list, value) imitates input_list.index(value)"""
-    i = 0
+    x = 0
     for i in input_list:
-        if i == value:
-            return i
+        if input_list[x] == value:
+            return x
         else:
-            i = i + 1      
+            x = x + 1
 
 def custom_count(input_list, value):
     """custom_count(input_list, value) imitates input_list.count(value)"""
@@ -174,8 +175,7 @@ def custom_count(input_list, value):
 
 def custom_reverse(input_list):
     """custom_reverse(input_list) imitates input_list.reverse()"""
-    custom_len(input_list)
-    x = int(custom_len / 2)
+    x = int(custom_len(input_list) / 2)
     for i in range(x):
         temp = input_list[i]
         input_list[i] = input_list[-1-i]
@@ -184,20 +184,24 @@ def custom_reverse(input_list):
    
 def custom_contains(input_list, value):
     """custom_contains(input_list, value) imitates (value in input_list)"""
-    i = 0
     for i in input_list:
         if i == value:
             return True
         else:
-            i = i + 1  
+            continue  
 
 def custom_equality(some_list, another_list):
     """custom_equality(some_list, another_list) imitates
     (some_list == another_list)
     """
-    i = 0
-    for i in some_list:
-        if some_list[i] != another_list[i]:
-            return False
-        else :
-            i = i + 1
+    if custom_len(some_list) != custom_len(another_list):
+        return False
+    else:
+        index = 0
+        while index < custom_len(some_list):
+            for i in some_list:
+                if some_list[index] != another_list[index]:
+                    return False
+                else:
+                    index = index + 1
+        return True
