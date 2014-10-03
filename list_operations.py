@@ -117,36 +117,36 @@ def custom_len(input_list):
         x = x + 1
     return x
 
-# For the next four functions, get clever using slice operations described in the first half
+#For the next four functions, get clever using slice operations described in the first half
 def custom_append(input_list, value):
     """custom_append(input_list, value) imitates input_list.append(value)"""
     x = custom_len(input_list)
-    input_list[x:-1] = [value]
+    input_list[x:] = [value]
     return input_list
     
 
 def custom_extend(input_list, values):
     """custom_extend(input_list, values) imitates input_list.extend(values)"""
     x = custom_len(input_list)
-    input_list[x:-1] = [values]
+    input_list[x:] = values
     return input_list
 
 def custom_insert(input_list, index, value):
     """custom_insert(input_list, index, value) imitates
     input_list.insert(index, value)
     """
-    input_list[index] = [value]
+    input_list[index:index] = [value]
     return input_list
 
 def custom_remove(input_list, value):
     """custom_remove(input_list, value) imitates input_list.remove(value)"""
-    i = 0
+    x = 0
     for i in input_list:
         if i == value:
-            del input_list[i]
+            del input_list[x]
             break
         else:
-            continue
+            x = x + 1
 
 def custom_pop(input_list):
     """custom_pop(input_list) imitates input_list.pop()"""
